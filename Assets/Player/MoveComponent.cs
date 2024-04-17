@@ -27,25 +27,25 @@ public class MoveComponent : MonoBehaviour
         Vector3 currentVelocity = _rigidbody.velocity;
         currentVelocity.y = 0;
         Vector3 movement = Vector3.zero;
-        Vector3 targetSpeed = _desiredVelocity;
+        Vector3 targetSpeed = _desiredVelocity * _maxSpeed;
         float difference;
         difference = targetSpeed.magnitude - currentVelocity.magnitude;
         if(!_mathApproximately(difference, 0, 0.01f))
         {
             float currentAcceleration;
-            if (difference < 0)
+            if (difference > 0)
             {
-                currentAcceleration = Mathf.Min(_acceleration * Time.deltaTime, difference);
+                currentAcceleration = Mathf.Min(_acceleration * Time.fixedDeltaTime, difference);
             }
             else
             {
-                currentAcceleration = Mathf.Max(_deceleration * Time.deltaTime * -1, difference);
+                currentAcceleration = Mathf.Max(_deceleration * Time.fixedDeltaTime * -1, difference);
             }
             difference = 1f / difference;
             movement = targetSpeed - currentVelocity;
             movement *= difference * currentAcceleration;
         }
-        _rigidbody.AddForce(movement, ForceMode.Acceleration);
+        _rigidbody.velocity += movement;
     }
 
     private bool _mathApproximately(float n1, float n2, float tolerance)
