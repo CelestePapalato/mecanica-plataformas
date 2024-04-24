@@ -5406,7 +5406,7 @@ GameObject:
   - component: {fileID: 927976979}
   - component: {fileID: 927976978}
   - component: {fileID: 927976977}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5698,6 +5698,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inputMovementRelatedToCamera: 1
   _smoothRotationValue: 0.056
+  _jumpImpulse: 400
+  _floorLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _floorRaycastLength: 0.0404
 --- !u!1 &1727351970
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,18 +16,24 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool _inputMovementRelatedToCamera;
     [SerializeField]
     [Range(0f, 0.3f)] float _smoothRotationValue;
+    [Header("Movement related")]
+    [SerializeField] float _jumpImpulse;
+    [SerializeField] LayerMask _floorLayerMask;
+    [SerializeField][Range(0f, 0.1f)] float _floorRaycastLength;
 
     private Vector3 _movement_input;
     private float _playerRotationcurrentVelocity;
     private Rigidbody _rb;
     private MoveComponent _moveComponent;
     private Camera _mainCamera;
+    private CapsuleCollider _col;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
         _mainCamera = Camera.main;
         _moveComponent = GetComponent<MoveComponent>();
+        _col = GetComponent<CapsuleCollider>();
     }
 
     private void FixedUpdate()
@@ -62,5 +68,20 @@ public class PlayerController : MonoBehaviour
         Vector2 input_vector = inputValue.Get<Vector2>();
         Vector3 vector3 = new Vector3(input_vector.x, 0, input_vector.y);
         _movement_input = Vector3.ClampMagnitude(vector3, 1);
+    }
+
+    private void OnJump()
+    {
+        if (!isOnFloor())
+        {
+            return;
+        }
+        _rb.AddForce(transform.up * _jumpImpulse);
+    }
+
+    private bool isOnFloor()
+    {
+        float altura = _col.height * transform.lossyScale.y;
+        return Physics.Raycast(transform.position, -transform.up, altura / 2 + _floorRaycastLength, _floorLayerMask);
     }
 }
