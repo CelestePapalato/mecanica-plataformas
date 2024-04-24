@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5514,6 +5514,7 @@ GameObject:
   - component: {fileID: 1617527059}
   - component: {fileID: 1617527065}
   - component: {fileID: 1617527064}
+  - component: {fileID: 1617527066}
   - component: {fileID: 1617527063}
   m_Layer: 0
   m_Name: Player
@@ -5622,9 +5623,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf7390408da393e4bb9178e0d0ae7b70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxSpeed: 10
+  _maxSpeed: 5
   _acceleration: 15
-  _deceleration: 30
+  _deceleration: 20
 --- !u!114 &1617527064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5683,6 +5684,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1617527066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617527058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbf99908bb385484dbf518baee8eaf38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputMovementRelatedToCamera: 1
+  _smoothRotationValue: 0.056
 --- !u!1 &1727351970
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,15 +5,23 @@ using UnityEngine.InputSystem;
 
 public class MoveComponent : MonoBehaviour
 {
+    [Header("Speed related")]
     [SerializeField] float _maxSpeed;
+    private float _currentMaxSpeed;
+    public float InputFactor
+    {
+        get { return _currentMaxSpeed; }
+        set { _currentMaxSpeed = _maxSpeed * value; }
+    }
     [SerializeField] float _acceleration;
     [SerializeField] float _deceleration;
 
     private Rigidbody _rigidbody;
-    private Vector3 _desiredVelocity;
+    private float _inputMagnitude = 0f;
 
     private void Awake()
     {
+        _currentMaxSpeed = _maxSpeed;
         _rigidbody = GetComponent<Rigidbody>();
     }
 
@@ -27,7 +35,8 @@ public class MoveComponent : MonoBehaviour
         Vector3 currentVelocity = _rigidbody.velocity;
         currentVelocity.y = 0;
         Vector3 movement = Vector3.zero;
-        Vector3 targetSpeed = _desiredVelocity * _maxSpeed;
+        Vector3 _desiredVelocity = transform.forward;
+        Vector3 targetSpeed = _desiredVelocity * _currentMaxSpeed;
         float difference;
         difference = targetSpeed.magnitude - currentVelocity.magnitude;
         if(!_mathApproximately(difference, 0, 0.01f))
@@ -52,11 +61,11 @@ public class MoveComponent : MonoBehaviour
     {
         return (Mathf.Abs(n2 - n1) < tolerance);
     }
-    
-    public void OnMove(InputValue inputValue)
+
+    private void OnMove(InputValue inputValue)
     {
         Vector2 input_vector = inputValue.Get<Vector2>();
-        Vector3 vector3 = new Vector3(input_vector.x, 0, input_vector.y);
-        _desiredVelocity = Vector3.ClampMagnitude(vector3, 1);
+        input_vector = Vector2.ClampMagnitude(input_vector, 1);
+        _inputMagnitude = input_vector.magnitude;
     }
 }
