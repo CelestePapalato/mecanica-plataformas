@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class MoveComponent : MonoBehaviour
 {
+    [Header("Direction related")]
+    [SerializeField] private bool _directionRelatedToCamera = false;
     [Header("Speed related")]
     [SerializeField] float _maxSpeed;
     private float _currentMaxSpeed;
@@ -12,6 +14,12 @@ public class MoveComponent : MonoBehaviour
     {
         get { return _currentMaxSpeed; }
         set { _currentMaxSpeed = _maxSpeed * value; }
+    }
+    private Vector3 _inputVelocity = Vector3.zero;
+    public Vector3 InputVelocity
+    {
+        get { return _inputVelocity; }
+        set { _inputVelocity = value; }
     }
     [SerializeField] float _acceleration;
     [SerializeField] float _deceleration;
@@ -36,6 +44,10 @@ public class MoveComponent : MonoBehaviour
         currentVelocity.y = 0;
         Vector3 movement = Vector3.zero;
         Vector3 _desiredVelocity = transform.forward;
+        if (_directionRelatedToCamera)
+        {
+            _desiredVelocity = Quaternion.AngleAxis(CameraObjective.RotationOnYAxis, Vector3.up) * _inputVelocity;
+        }
         Vector3 targetSpeed = _desiredVelocity * _currentMaxSpeed;
         float difference;
         difference = targetSpeed.magnitude - currentVelocity.magnitude;

@@ -43,8 +43,16 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         isOnFloor();
-        rotatePlayer();
+        //rotatePlayer();
+        rotateAlongCamera();
         maxSpeedRelatedToInput();
+    }
+
+    private void rotateAlongCamera()
+    {
+        Vector3 rotation = transform.eulerAngles;
+        rotation.y = CameraObjective.RotationOnYAxis;
+        transform.localRotation = Quaternion.Euler(rotation);
     }
 
     private void rotatePlayer()
@@ -73,6 +81,7 @@ public class PlayerController : MonoBehaviour
         Vector2 input_vector = inputValue.Get<Vector2>();
         Vector3 vector3 = new Vector3(input_vector.x, 0, input_vector.y);
         _movement_input = Vector3.ClampMagnitude(vector3, 1);
+        _moveComponent.InputVelocity = _movement_input.normalized;
     }
 
     private void OnJump(InputValue inputValue)

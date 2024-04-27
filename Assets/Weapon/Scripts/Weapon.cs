@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] Proyectile _proyectilePrefab;
+    [SerializeField] Transform _spawnPoint;
 
     // Update is called once per frame
-    void Update()
+    void OnShoot()
     {
-        
+        Debug.Log("ugh");
     }
 }
