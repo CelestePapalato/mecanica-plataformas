@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class HealthComponent : MonoBehaviour
+public class HealthComponent : MonoBehaviour, IDamageable
 {
     [SerializeField]
     private int _maxHealth;
@@ -16,10 +16,10 @@ public class HealthComponent : MonoBehaviour
         _health = _maxHealth;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void Damage(int value)
     {
-        _health = Mathf.Clamp(_health--, 0, _maxHealth);
-        if(_health == 0)
+        _health = Mathf.Clamp(_health - value, 0, _maxHealth);
+        if (_health == 0)
         {
             NoHealth.Invoke();
         }
