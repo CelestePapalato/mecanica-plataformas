@@ -73,7 +73,7 @@ public class CameraObjective : MonoBehaviour
         // 3- Rotamos en valores locales
         transform.localRotation = Quaternion.Euler(-rotacionEjeX, suavidadV.x + transform.localEulerAngles.y, 0);
         RotationOnYAxis = transform.eulerAngles.y;
-        RotationOnXAxis = rotacionEjeX;
+        RotationOnXAxis = -rotacionEjeX;
     }
     void OnRotate(InputValue inputValue)
     {

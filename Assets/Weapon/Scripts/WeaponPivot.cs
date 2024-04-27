@@ -27,7 +27,6 @@ public class WeaponPivot : MonoBehaviour
             transform.LookAt(hit.point);
             return;
         }
-        Vector3 point = _cam.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, _cam.farClipPlane));
-        transform.LookAt(point);
+        transform.localEulerAngles = new Vector3(CameraObjective.RotationOnXAxis, 0, 0);
     }
 }

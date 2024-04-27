@@ -16,6 +16,7 @@ public class Proyectile : MonoBehaviour
             {
                 damageable.Damage(damage);
             }
-        }        
+        }
+        Destroy(gameObject);
     }
 }
