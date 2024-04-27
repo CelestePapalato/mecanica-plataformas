@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
         _movement_input = Vector3.ClampMagnitude(vector3, 1);
     }
 
-    private void OnJump()
+    private void OnJump(InputValue inputValue)
     {
         if (!isOnFloor())
         {

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 namespace InventorySystem
 {
-    public class Inventory
+    public static class Inventory
     {
         private static List<Item> _currentItems = new List<Item>();
 
