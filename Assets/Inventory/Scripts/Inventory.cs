@@ -8,6 +8,7 @@ namespace InventorySystem
     public static class Inventory
     {
         private static List<Item> _currentItems = new List<Item>();
+        public static Item[] CurrentItems { get { return _currentItems.ToArray(); } }
 
         public static UnityAction<Item[]> InventoryUpdated;
         private static void _inventoryUpdated()
@@ -18,6 +19,7 @@ namespace InventorySystem
             }
             Item[] inventoryCopy = new Item[_currentItems.Count];
             _currentItems.CopyTo(inventoryCopy, 0);
+            InventoryUpdated(inventoryCopy);
         }
 
         public static void AddItem(Item itemToAdd)

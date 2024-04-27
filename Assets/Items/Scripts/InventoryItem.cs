@@ -10,6 +10,7 @@ namespace InventorySystem
         public void grab()
         {
             Inventory.AddItem(_itemData);
+            Destroy(gameObject);
         }
     }
 }
