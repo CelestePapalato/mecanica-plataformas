@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7909926108067327344}
   - component: {fileID: 1679620408506198688}
   - component: {fileID: -6937329481775685904}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Grenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ SphereCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 392
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -133,7 +133,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &-6937329481775685904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,5 +146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17632deced1e3e94ea06638bd167255b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 3
-  radiusOfExplosion: 5
+  damage: 1
+  explosionForce: 1000
+  radiusOfExplosion: 7
