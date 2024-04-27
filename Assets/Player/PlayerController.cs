@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _jumpImpulse;
     [SerializeField] LayerMask _floorLayerMask;
     [SerializeField][Range(0f, 0.1f)] float _floorRaycastLength;
+    [SerializeField][Range(0f, 0.2f)] float _jumpBufferTimeLength;
 
     private Vector3 _movement_input;
     private float _playerRotationcurrentVelocity;
@@ -27,6 +28,9 @@ public class PlayerController : MonoBehaviour
     private MoveComponent _moveComponent;
     private Camera _mainCamera;
     private CapsuleCollider _col;
+
+    private bool _jumpBuffer = false;
+    private bool _onFloor;
 
     private void Awake()
     {
@@ -38,6 +42,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        isOnFloor();
         rotatePlayer();
         maxSpeedRelatedToInput();
     }
@@ -72,16 +77,43 @@ public class PlayerController : MonoBehaviour
 
     private void OnJump(InputValue inputValue)
     {
-        if (!isOnFloor())
+        if (_onFloor && !_jumpBuffer)
         {
+            Jump();
             return;
         }
-        _rb.AddForce(transform.up * _jumpImpulse);
+        if (!_onFloor)
+        {
+            StopCoroutine(JumpInputBuffer());
+            StartCoroutine(JumpInputBuffer());
+        }
     }
 
-    private bool isOnFloor()
+    private void isOnFloor()
     {
         float altura = _col.height * transform.lossyScale.y;
-        return Physics.Raycast(transform.position, -transform.up, altura / 2 + _floorRaycastLength, _floorLayerMask);
+        _onFloor = Physics.Raycast(transform.position, -transform.up, altura / 2 + _floorRaycastLength, _floorLayerMask);
+        if (_jumpBuffer && _onFloor)
+        {
+            Jump();
+        }
+        if (_onFloor)
+        {
+            _jumpBuffer = false;
+            StopCoroutine(JumpInputBuffer());
+        }
+    }
+
+    private void Jump()
+    {
+        _rb.velocity = new Vector3(_rb.velocity.x, 0, _rb.velocity.z);
+        _rb.AddForce(transform.up * _jumpImpulse, ForceMode.Impulse);
+    }
+
+    IEnumerator JumpInputBuffer()
+    {
+        _jumpBuffer = true;
+        yield return new WaitForSeconds(_jumpBufferTimeLength);
+        _jumpBuffer = false;
     }
 }
