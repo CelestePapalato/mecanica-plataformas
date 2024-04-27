@@ -32,9 +32,15 @@ public class CameraObjective : MonoBehaviour
 
     GameObject player;
 
-    void Start()
+    private void Awake()
     {
         player = GameObject.FindWithTag("Player");
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    void Start()
+    {
         rotacionEjeX = transform.localEulerAngles.x;
         RotationOnYAxis = transform.eulerAngles.y;
         RotationOnXAxis = rotacionEjeX;
