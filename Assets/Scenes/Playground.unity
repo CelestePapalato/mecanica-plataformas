@@ -223,7 +223,7 @@ MonoBehaviour:
   _proyectilePrefab: {fileID: -6937329481775685904, guid: b1b1848bf40a4d848a0c45ea09946b23,
     type: 3}
   _spawnPoint: {fileID: 1803264775}
-  _fireRate: 0.25
+  _fireRate: 0.5
   shootStrength: 35
 --- !u!1 &238537838
 GameObject:
@@ -11852,7 +11852,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e8d7ebdf77c0214e835c1644bfdb659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _raycastDistance: 300
   _spawnPoint: {fileID: 1803264775}
 --- !u!1 &1996927073
 GameObject:
