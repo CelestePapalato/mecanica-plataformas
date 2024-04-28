@@ -1,4 +1,4 @@
 public interface IVisitor
 {
-    public void visit(object o);
+    public void Visit(object o);
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class HealthComponent : MonoBehaviour, IDamageable
+public class HealthComponent : MonoBehaviour, IDamageable, IVisitable
 {
     [SerializeField]
     private int _maxHealth;
@@ -15,6 +15,11 @@ public class HealthComponent : MonoBehaviour, IDamageable
     void Awake()
     {
         _health = _maxHealth;
+    }
+
+    public void Accept(IVisitor visitor)
+    {
+        visitor.Visit(this);
     }
 
     public void Damage(int value)

@@ -2,17 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUp : MonoBehaviour
+[CreateAssetMenu(fileName = "PowerUp Data", menuName = "ScriptableObjects/PowerUp Data", order = 2)]
+public class PowerUp : ScriptableObject, IVisitor
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private int HealthBonus;
+    [SerializeField] private float InvincibilityTime;
+    [SerializeField] private float WeaponRateMultiplier;
+    [SerializeField] private float WeaponPowerUpTime;
 
-    // Update is called once per frame
-    void Update()
+    public void Visit(object o)
     {
-        
+        HealthComponent healthComponent = (HealthComponent)o;
+        if(healthComponent && HealthBonus > 0)
+        {
+            healthComponent.Heal(HealthBonus);
+        }
+        if(healthComponent && InvincibilityTime > 0)
+        {
+            healthComponent.StartInvincibility(InvincibilityTime);
+        }
+        if(o is Weapon && WeaponRateMultiplier > 1)
+        {
+            Weapon weapon = o as Weapon;
+        }
     }
 }
