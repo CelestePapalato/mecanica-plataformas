@@ -7,15 +7,29 @@ public class HealthComponent : MonoBehaviour, IDamageable, IVisitable
 {
     [SerializeField]
     private int _maxHealth;
+    public int MaxHealth { get { return _maxHealth; } }
     [SerializeField]
     public UnityEvent NoHealth;
-    public UnityEvent<int> HealthUpdate;
+    public UnityAction<int> HealthUpdate;
     private bool invincibility = false;
 
     private int _health;
+    public int Health
+    {
+        get { return _health; }
+        private set
+        {
+            _health = value;
+            if(HealthUpdate != null)
+            {
+                HealthUpdate(_health);
+            }
+        }
+    }
+
     void Awake()
     {
-        _health = _maxHealth;
+        Health = _maxHealth;
     }
 
     public void Accept(IVisitor visitor)
@@ -29,9 +43,8 @@ public class HealthComponent : MonoBehaviour, IDamageable, IVisitable
         {
             return;
         }
-        _health = Mathf.Clamp(_health - value, 0, _maxHealth);
-        HealthUpdate.Invoke(_health);
-        if (_health == 0)
+        Health = Mathf.Clamp(_health - value, 0, _maxHealth);
+        if (Health == 0)
         {
             NoHealth.Invoke();
         }
@@ -39,8 +52,7 @@ public class HealthComponent : MonoBehaviour, IDamageable, IVisitable
 
     public void Heal(int value)
     {
-        _health = Mathf.Clamp(_health + value, 0, _maxHealth);
-        HealthUpdate.Invoke(_health);
+        Health = Mathf.Clamp(Health + value, 0, _maxHealth);
     }
 
     public void Invincibility(float time)

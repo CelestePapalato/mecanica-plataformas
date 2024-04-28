@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8325195e0eca7404daab5527b5ed6c6b, type: 3}
   m_Name: HealthBonus
   m_EditorClassIdentifier: 
-  HealthBonus: 1
+  HealthBonus: 5
   InvincibilityTime: 0
   WeaponRateMultiplier: 0
   WeaponPowerUpTime: 0
