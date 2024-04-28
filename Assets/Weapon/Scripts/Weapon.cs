@@ -12,7 +12,6 @@ public class Weapon : MonoBehaviour, IVisitable
     private float FireRate
     {
         get { return _fireRate / _currentFireRateMultiplier; }
-        set { FireRate = value; }
     }
     [SerializeField]
     private float shootStrength;
@@ -23,7 +22,6 @@ public class Weapon : MonoBehaviour, IVisitable
     {
         visitor.Visit(this);
     }
-
 
     void OnShoot()
     {
@@ -53,6 +51,8 @@ public class Weapon : MonoBehaviour, IVisitable
     private IEnumerator FireRateBonusTimer(float fireRateBonus, float timeLength)
     {
         _currentFireRateMultiplier = fireRateBonus;
+        _canShoot = true;
+        StopCoroutine(controlarCadencia());
         yield return new WaitForSeconds(timeLength);
         _currentFireRateMultiplier = 1;
     }

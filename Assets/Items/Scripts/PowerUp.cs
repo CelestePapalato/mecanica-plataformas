@@ -12,7 +12,7 @@ public class PowerUp : ScriptableObject, IVisitor
 
     public void Visit(object o)
     {
-        HealthComponent healthComponent = (HealthComponent)o;
+        HealthComponent healthComponent = o as HealthComponent;
         if(healthComponent && HealthBonus > 0)
         {
             healthComponent.Heal(HealthBonus);
@@ -24,6 +24,7 @@ public class PowerUp : ScriptableObject, IVisitor
         if(o is Weapon && WeaponRateMultiplier > 1)
         {
             Weapon weapon = o as Weapon;
+            weapon.FireRateBonus(WeaponRateMultiplier, WeaponPowerUpTime);
         }
     }
 }

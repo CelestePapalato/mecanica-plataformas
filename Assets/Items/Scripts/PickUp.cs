@@ -8,12 +8,17 @@ public class PickUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        IVisitable visitable;
-        if (TryGetComponent<IVisitable>(out visitable))
+        IVisitable[] visitables;
+        visitables = other.gameObject.GetComponentsInChildren<IVisitable>();
+        if(visitables == null)
+        {
+            return;
+        }
+        foreach(IVisitable visitable in visitables)
         {
             visitable.Accept(powerUp);
-            Destroy(gameObject);
         }
+        Destroy(gameObject);
     }
 
 }

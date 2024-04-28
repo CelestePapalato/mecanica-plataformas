@@ -9,6 +9,7 @@ public class HealthComponent : MonoBehaviour, IDamageable, IVisitable
     private int _maxHealth;
     [SerializeField]
     public UnityEvent NoHealth;
+    public UnityEvent<int> HealthUpdate;
     private bool invincibility = false;
 
     private int _health;
@@ -29,6 +30,7 @@ public class HealthComponent : MonoBehaviour, IDamageable, IVisitable
             return;
         }
         _health = Mathf.Clamp(_health - value, 0, _maxHealth);
+        HealthUpdate.Invoke(_health);
         if (_health == 0)
         {
             NoHealth.Invoke();
@@ -38,6 +40,7 @@ public class HealthComponent : MonoBehaviour, IDamageable, IVisitable
     public void Heal(int value)
     {
         _health = Mathf.Clamp(_health + value, 0, _maxHealth);
+        HealthUpdate.Invoke(_health);
     }
 
     public void Invincibility(float time)
