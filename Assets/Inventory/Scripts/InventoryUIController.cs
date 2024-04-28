@@ -28,7 +28,7 @@ namespace InventorySystem {
                 int index = _itemsUIControllers.IndexOf(itemUI);
                 if(index >= items.Length)
                 {
-                    itemUI.ItemData = null;
+                    Destroy(itemUI.gameObject);
                 }
                 else
                 {

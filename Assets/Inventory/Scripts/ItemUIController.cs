@@ -22,6 +22,11 @@ namespace InventorySystem {
 
         private void updateSprite()
         {
+            if(ItemData == null)
+            {
+                _imageComponent.sprite = null;
+                return;
+            }
             Sprite sprite = _itemData.ItemSprite;
             _imageComponent.sprite = sprite;
         }

@@ -38,5 +38,10 @@ namespace InventorySystem
             _currentItems.Remove(itemToRemove);
             _inventoryUpdated();
         }
+
+        public static bool ContainsItem(Item itemToCheck)
+        {
+            return _currentItems.Contains(itemToCheck);
+        }
     }
 }
