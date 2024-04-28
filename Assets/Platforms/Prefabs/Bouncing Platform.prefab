@@ -118,5 +118,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a206b132de259343bd0ec245bd5d6f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceImpulse: 10
+  bounceImpulse: 12
   heightOffset: 39.9

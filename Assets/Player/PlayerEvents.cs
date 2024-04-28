@@ -6,6 +6,15 @@ using UnityEngine.InputSystem;
 public class PlayerEvents : MonoBehaviour
 {
     List<IInteractable> interactables = new List<IInteractable> ();
+    HealthComponent healthComponent;
+    Weapon weapon;
+
+    private void Awake()
+    {
+        healthComponent = GetComponentInChildren<HealthComponent>();
+        weapon = GetComponentInChildren<Weapon>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         IItem item;

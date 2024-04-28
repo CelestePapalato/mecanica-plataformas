@@ -9,6 +9,7 @@ public class HealthComponent : MonoBehaviour, IDamageable
     private int _maxHealth;
     [SerializeField]
     public UnityEvent NoHealth;
+    private bool invincibility = false;
 
     private int _health;
     void Awake()
@@ -18,6 +19,10 @@ public class HealthComponent : MonoBehaviour, IDamageable
 
     public void Damage(int value)
     {
+        if (invincibility)
+        {
+            return;
+        }
         _health = Mathf.Clamp(_health - value, 0, _maxHealth);
         if (_health == 0)
         {
@@ -29,4 +34,21 @@ public class HealthComponent : MonoBehaviour, IDamageable
     {
         _health = Mathf.Clamp(_health + value, 0, _maxHealth);
     }
+
+    public void Invincibility(float time)
+    {
+        if (invincibility)
+        {
+            StopAllCoroutines();
+        }
+        StartCoroutine(StartInvincibility(time));
+    }
+
+    public IEnumerator StartInvincibility(float time)
+    {
+        invincibility = true;
+        yield return new WaitForSeconds(time);
+        invincibility = false;
+    }
+
 }
