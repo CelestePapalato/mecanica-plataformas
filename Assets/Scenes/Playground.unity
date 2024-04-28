@@ -11762,7 +11762,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 45c1dc7422f62b9409528fc5708ea562, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11852,6 +11852,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e8d7ebdf77c0214e835c1644bfdb659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _raycastDistance: 300
+  _spawnPoint: {fileID: 1803264775}
 --- !u!1 &1996927073
 GameObject:
   m_ObjectHideFlags: 0
@@ -12173,25 +12175,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2604560578777506239, guid: f00a88276b477f347a4634a756ef98b3,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4599967392781534868, guid: f00a88276b477f347a4634a756ef98b3,
         type: 3}
       propertyPath: m_Name
       value: Puerta
-      objectReference: {fileID: 0}
-    - target: {fileID: 4599967392781534868, guid: f00a88276b477f347a4634a756ef98b3,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5030144726649580785, guid: f00a88276b477f347a4634a756ef98b3,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

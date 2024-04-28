@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3838882158711563509}
   - component: {fileID: 4199129187111272832}
   - component: {fileID: 7883964178384750386}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 1123195601228010640}
   - component: {fileID: 1372122096987922124}
   - component: {fileID: 3569615601680500350}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Puerta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 8412250148137913778}
   - component: {fileID: 156927160263388412}
   - component: {fileID: 4405596581672618484}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
