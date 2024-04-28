@@ -20,7 +20,7 @@ namespace PuzzleSystem
             }
         }
 
-        protected override void OnInteraction()
+        public override void Interact()
         {
             if (!InventorySystem.Inventory.ContainsItem(itemNeeded) || Completed)
             {

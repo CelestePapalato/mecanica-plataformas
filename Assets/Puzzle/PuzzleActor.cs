@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 namespace PuzzleSystem
 {
-    public abstract class PuzzleActor : MonoBehaviour
+    public abstract class PuzzleActor : MonoBehaviour, IInteractable
     {
         private bool _completed = false;
         public bool Completed
@@ -23,13 +23,10 @@ namespace PuzzleSystem
 
         public UnityAction PuzzleStateUpdated;
 
-        private void OnMouseDown()
+        public abstract void Interact();
+        public float DistanceTo(Vector3 point)
         {
-            Debug.Log(name + " interacted");
-            OnInteraction();
+            return Vector3.Distance(transform.position, point);
         }
-
-        protected abstract void OnInteraction();
-
     }
 }
