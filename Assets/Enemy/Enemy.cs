@@ -28,6 +28,11 @@ public class Enemy : MonoBehaviour
         InvokeRepeating(nameof(updatePath), .2f, _pathUpdateRate);
     }
 
+    private void Update()
+    {
+        transform.LookAt(_player);
+    }
+
     void updatePath()
     {
         _agent.destination = _player.position;
