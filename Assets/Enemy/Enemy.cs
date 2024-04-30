@@ -40,6 +40,10 @@ public class Enemy : MonoBehaviour
 
     void updatePath()
     {
+        if (!_agent.enabled)
+        {
+            return;
+        }
         _agent.destination = _player.position;
         if (_agent.pathStatus == NavMeshPathStatus.PathInvalid && isOnFloor())
         {
