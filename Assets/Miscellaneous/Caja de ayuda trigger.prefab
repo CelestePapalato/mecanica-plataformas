@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7759138873683209506}
   - component: {fileID: 1056104575281243400}
   - component: {fileID: 259408039602868624}
-  m_Layer: 2
+  m_Layer: 5
   m_Name: Caja de ayuda
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 4560661371770637170}
   - component: {fileID: 2828805802343052083}
   - component: {fileID: 5895859969591913396}
-  m_Layer: 2
+  m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 7293196502434716701}
   - component: {fileID: 5718888504550060513}
   - component: {fileID: 3440591447070720175}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Caja de ayuda trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
