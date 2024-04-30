@@ -23,18 +23,23 @@ namespace InventorySystem {
                 ItemUIController new_itemUI = Instantiate(_itemUIPrefab, transform);
                 _itemsUIControllers.Add(new_itemUI);
             }
+            List<ItemUIController> toRemove = new List<ItemUIController> ();
             foreach(ItemUIController itemUI in _itemsUIControllers)
             {
                 int index = _itemsUIControllers.IndexOf(itemUI);
                 if(index >= items.Length)
                 {
-                    _itemsUIControllers.Remove(itemUI);
-                    Destroy(itemUI.gameObject);
+                    toRemove.Add(itemUI);
                 }
                 else
                 {
                     itemUI.ItemData = items[index];
                 }
+            }
+            foreach(ItemUIController itemUI in toRemove)
+            {
+                _itemsUIControllers.Remove(itemUI);
+                Destroy(itemUI.gameObject);
             }
         }
     }
