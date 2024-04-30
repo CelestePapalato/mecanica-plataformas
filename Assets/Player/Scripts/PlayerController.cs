@@ -115,7 +115,10 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        _rb.velocity = new Vector3(_rb.velocity.x, 0, _rb.velocity.z);
+        if(_rb.velocity.y < 0)
+        {
+            _rb.velocity = new Vector3(_rb.velocity.x, 0, _rb.velocity.z);
+        }
         _rb.AddForce(transform.up * _jumpImpulse, ForceMode.Impulse);
     }
 
