@@ -10641,6 +10641,10 @@ MonoBehaviour:
   _damage: 1
   _pushObjectsWhenDamaged: 1
   _pushImpulseValue: 10
+  _floorLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _floorRaycastLength: 0.0309
 --- !u!195 &744047743
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -11475,6 +11479,10 @@ MonoBehaviour:
   _damage: 1
   _pushObjectsWhenDamaged: 1
   _pushImpulseValue: 5
+  _floorLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _floorRaycastLength: 0.0309
 --- !u!54 &1570669894
 Rigidbody:
   m_ObjectHideFlags: 0
