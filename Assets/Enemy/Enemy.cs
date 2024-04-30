@@ -44,8 +44,7 @@ public class Enemy : MonoBehaviour
         {
             return;
         }
-        _agent.destination = _player.position;
-        if (_agent.pathStatus == NavMeshPathStatus.PathInvalid && isOnFloor())
+        if (isOnFloor() && !_agent.isOnNavMesh)
         {
             Debug.Log("Rigidbody movement " + name);
             Vector3 playerDirection = _player.position - transform.position;
@@ -54,6 +53,7 @@ public class Enemy : MonoBehaviour
             _rb.AddForce(playerDirection * _agent.speed, ForceMode.VelocityChange);
             return;
         }
+        _agent.destination = _player.position;
         _rb.velocity = Vector3.zero;
     }
 
