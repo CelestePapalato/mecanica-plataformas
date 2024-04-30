@@ -147,6 +147,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  explosionForce: 1000
+  explosionForce: 700
   radiusOfExplosion: 7
   timeAlive: 4

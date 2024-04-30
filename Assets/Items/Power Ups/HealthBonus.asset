@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: HealthBonus
   m_EditorClassIdentifier: 
   HealthBonus: 5
-  InvincibilityTime: 0
+  InvincibilityTime: 0.3
   WeaponRateMultiplier: 0
   WeaponPowerUpTime: 0
