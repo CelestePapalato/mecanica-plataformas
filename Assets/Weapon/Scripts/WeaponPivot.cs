@@ -20,17 +20,20 @@ public class WeaponPivot : MonoBehaviour
 
     void updateRotation()
     {
-        var ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
+        var ray = _cam.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
         RaycastHit hit;
-        if (!Physics.Raycast(ray, out hit) || !_spawnPoint)
+        if (_spawnPoint)
+        {
+            ray.origin = _spawnPoint.position;
+        }
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        {
+            Debug.Log("xddd");
+            transform.LookAt(hit.point);
+        }
+        else
         {
             transform.localEulerAngles = new Vector3(CameraObjective.RotationOnXAxis, 0, 0);
-        }
-        Vector3 raycastDirection = (hit.point - _spawnPoint.position).normalized;
-        ray = new Ray(hit.point, raycastDirection);
-        if (Physics.Raycast(ray, out hit))
-        {
-            transform.LookAt(hit.point);
         }
     }
 }
