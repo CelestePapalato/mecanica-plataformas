@@ -11,6 +11,7 @@ namespace PuzzleSystem
         [SerializeField] 
         [Tooltip("Cuando el puzzle ha sido completado, se activa el objeto para que sea visible")]
         GameObject finishedState;
+        [SerializeField] GameObject toDestroyWhenFinished;
 
         private void Awake()
         {
@@ -34,6 +35,10 @@ namespace PuzzleSystem
             if(finishedState)
             {
                 finishedState.SetActive(true);
+            }
+            if (toDestroyWhenFinished)
+            {
+                Destroy(toDestroyWhenFinished);
             }
         }
     }
