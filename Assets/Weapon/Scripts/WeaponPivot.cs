@@ -28,7 +28,6 @@ public class WeaponPivot : MonoBehaviour
         }
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
-            Debug.Log("xddd");
             transform.LookAt(hit.point);
         }
         else

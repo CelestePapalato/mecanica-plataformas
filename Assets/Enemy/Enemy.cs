@@ -23,17 +23,19 @@ public class Enemy : MonoBehaviour
         _healthComponent.HealthUpdate += Damaged;
         _rb = GetComponent<Rigidbody>();
         _player = GameObject.FindGameObjectWithTag("Player").transform;
-    }
-
-    // Update is called once per frame
-    void Start()
-    {
-        InvokeRepeating(nameof(updatePath), .2f, _pathUpdateRate);
+        DetectionArea detectionArea = GetComponentInChildren<DetectionArea>();
+        detectionArea.Entered += FollowPlayer;
+        FollowPlayer(false);
     }
 
     private void Update()
     {
+        Vector3 rotationOG = transform.rotation.eulerAngles;
         transform.LookAt(_player);
+        Vector3 newRotation = transform.rotation.eulerAngles;
+        newRotation.x = rotationOG.x;
+        newRotation.z = rotationOG.z;
+        transform.rotation = Quaternion.Euler(newRotation);
     }
 
     void updatePath()
@@ -51,9 +53,27 @@ public class Enemy : MonoBehaviour
         _rb.velocity = Vector3.zero;
     }
 
+    private void FollowPlayer(bool state)
+    {
+        if (state)
+        {
+            _agent.enabled = true;
+            InvokeRepeating(nameof(updatePath), .2f, _pathUpdateRate);
+        }
+        else
+        {
+            CancelInvoke(nameof(updatePath));
+            _agent.enabled = false;
+            Vector3 velocity = _rb.velocity;
+            velocity.x = 0;
+            velocity.z = 0;
+            _rb.velocity = velocity;
+        }
+    }
+
     void Damaged(int health)
     {
-        if (health == 0)
+        if (health <= 0)
         {
             Destroy(gameObject);
         }
