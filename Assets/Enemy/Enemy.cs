@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] float _pathUpdateRate;
     [SerializeField] int _damage;
+    [SerializeField] bool _pushObjectsWhenDamaged = false;
+    [SerializeField] float _pushImpulseValue;
 
     NavMeshAgent _agent;
     HealthComponent _healthComponent;
@@ -51,6 +53,13 @@ public class Enemy : MonoBehaviour
     {
         IDamageable damageable = toDamage.GetComponent<IDamageable>();
         damageable.Damage(_damage);
+        if (_pushObjectsWhenDamaged && _pushImpulseValue > 0)
+        {
+            Rigidbody enemyRB = toDamage.GetComponent<Rigidbody>();
+            Vector3 impulseVector = toDamage.transform.position - transform.position;
+            impulseVector = impulseVector.normalized;
+            enemyRB.AddForce(impulseVector * _pushImpulseValue, ForceMode.Impulse);
+        }
     }
 
 }
