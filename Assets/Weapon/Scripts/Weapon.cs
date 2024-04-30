@@ -6,8 +6,7 @@ public class Weapon : MonoBehaviour, IVisitable
 {
     [SerializeField] Proyectile _proyectilePrefab;
     [SerializeField] Transform _spawnPoint;
-    [SerializeField]
-    private float _fireRate = 0.25f;
+    [SerializeField] private float _fireRate = 0.25f;
     private float _currentFireRateMultiplier = 1;
     private float FireRate
     {
@@ -15,12 +14,18 @@ public class Weapon : MonoBehaviour, IVisitable
     }
     [SerializeField]
     private float shootStrength;
+    [SerializeField] ParticleSystem _particleSystem;
 
     private bool _canShoot = true;
 
     public void Accept(IVisitor visitor)
     {
         visitor.Visit(this);
+    }
+
+    private void Awake()
+    {
+        _particleSystem?.Stop();
     }
 
     void OnShoot()
@@ -50,10 +55,12 @@ public class Weapon : MonoBehaviour, IVisitable
 
     private IEnumerator FireRateBonusTimer(float fireRateBonus, float timeLength)
     {
+        _particleSystem?.Play();
         _currentFireRateMultiplier = fireRateBonus;
         _canShoot = true;
         StopCoroutine(controlarCadencia());
         yield return new WaitForSeconds(timeLength);
         _currentFireRateMultiplier = 1;
+        _particleSystem?.Stop();
     }
 }
