@@ -174,7 +174,7 @@ MonoBehaviour:
   _pathUpdateRate: 0.3
   _damage: 1
   _pushObjectsWhenDamaged: 1
-  _pushImpulseValue: 10
+  _pushImpulseValue: 20
   _floorLayerMask:
     serializedVersion: 2
     m_Bits: 64
